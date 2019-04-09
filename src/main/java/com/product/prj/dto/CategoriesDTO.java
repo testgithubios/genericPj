@@ -1,5 +1,8 @@
 package com.product.prj.dto;
 
+import com.product.prj.entity.Categories;
+import com.product.prj.entity.CategoriesTranslate;
+
 public class CategoriesDTO extends BaseDTO{
 	
 	private long categoriesId;
