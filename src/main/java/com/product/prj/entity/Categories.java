@@ -1,5 +1,7 @@
 package com.product.prj.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,18 +11,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "categories")
-public class Categories {
+public class Categories implements Serializable {
 
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="categories_id")
+	private static final long serialVersionUID = -1633816374375549622L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "categories_id")
 	private long id;
-	
-	@Column(name = "name", nullable = false, length = 50)
-	private String name;
-	
+
 	@Column(name = "type_category")
 	private int categoryType;
-	
+
 	@Column(name = "parentid")
 	private long ParentId;
 
@@ -30,14 +32,6 @@ public class Categories {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getCategoryType() {
@@ -56,5 +50,4 @@ public class Categories {
 		ParentId = parentId;
 	}
 
-	
 }

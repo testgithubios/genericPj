@@ -1,5 +1,6 @@
 package com.product.prj.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,9 +17,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "products")
-public class Products {
+public class Products implements Serializable {
 
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private static final long serialVersionUID = 287082644709185653L;
+
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private long id;
 	
@@ -36,38 +39,17 @@ public class Products {
 	@Column(name = "sku")
 	private String sku;
 	
-	@Column(name = "price")
-	private float price;
-	
-	@Column(name = "weight")
-	private float weight;
-	
 	@Column(name = "size")
 	private String size;
 	
 	@Column(name = "available_size")
 	private String availableSize;
 	
-	@Column(name = "color")
-	private String color;
-	
-	@Column(name = "available_color")
-	private String availableColor;
-	
 	@Column(name = "discount")
 	private float discount;
 	
 	@Column(name = "unit_in_stock")
 	private int unitInstock;
-	
-	@Column(name = "short_desc", length = 1000)
-	private String shortDesc;
-	
-	@Column(name = "cart_desc", length = 1000)
-	private String cartDesc;
-	
-	@Column(name = "long_desc", columnDefinition = "TEXT")
-	private String longDesc;
 	
 	@Column(name = "update_date")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -116,22 +98,6 @@ public class Products {
 		this.sku = sku;
 	}
 
-	public float getPrice() {
-		return price;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
-	public float getWeight() {
-		return weight;
-	}
-
-	public void setWeight(float weight) {
-		this.weight = weight;
-	}
-
 	public String getSize() {
 		return size;
 	}
@@ -148,22 +114,6 @@ public class Products {
 		this.availableSize = availableSize;
 	}
 
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getAvailableColor() {
-		return availableColor;
-	}
-
-	public void setAvailableColor(String availableColor) {
-		this.availableColor = availableColor;
-	}
-
 	public float getDiscount() {
 		return discount;
 	}
@@ -178,30 +128,6 @@ public class Products {
 
 	public void setUnitInstock(int unitInstock) {
 		this.unitInstock = unitInstock;
-	}
-
-	public String getShortDesc() {
-		return shortDesc;
-	}
-
-	public void setShortDesc(String shortDesc) {
-		this.shortDesc = shortDesc;
-	}
-
-	public String getCartDesc() {
-		return cartDesc;
-	}
-
-	public void setCartDesc(String cartDesc) {
-		this.cartDesc = cartDesc;
-	}
-
-	public String getLongDesc() {
-		return longDesc;
-	}
-
-	public void setLongDesc(String longDesc) {
-		this.longDesc = longDesc;
 	}
 
 	public Date getUpdateDate() {

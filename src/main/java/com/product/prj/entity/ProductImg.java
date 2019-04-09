@@ -1,5 +1,7 @@
 package com.product.prj.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,9 +14,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product_img")
-public class ProductImg {
+public class ProductImg implements Serializable {
 
-	@Id @GeneratedValue (strategy = GenerationType.SEQUENCE)
+	private static final long serialVersionUID = 1388070485170661016L;
+
+	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name = "product_img_id")
 	private long id;
 	

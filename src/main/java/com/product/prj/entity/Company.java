@@ -1,5 +1,7 @@
 package com.product.prj.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,23 +11,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "company")
-public class Company {
+public class Company implements Serializable {
 	
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private static final long serialVersionUID = 8015718999076576580L;
+
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "company_id")
 	private long id;
-	
-	@Column(name = "name", nullable = false, length = 100)
-	private String name;
 	
 	@Column(name = "phone1")
 	private String phone1;
 	
 	@Column(name = "phone2")
 	private String phone2;
-	
-	@Column(name = "address")
-	private String address;
 	
 	@Column(name = "facebookLink")
 	private String facebookLink;
@@ -50,14 +48,6 @@ public class Company {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getPhone1() {
 		return phone1;
 	}
@@ -72,14 +62,6 @@ public class Company {
 
 	public void setPhone2(String phone2) {
 		this.phone2 = phone2;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getFacebookLink() {
