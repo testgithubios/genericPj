@@ -1,5 +1,7 @@
 package com.product.prj.controller;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.product.prj.dto.CategoriesDTO;
 import com.product.prj.dto.ResponseDTO;
+import com.product.prj.entity.Categories;
 import com.product.prj.entity.Languages;
 import com.product.prj.services.CategoriesService;
 import com.product.prj.services.LanguagesService;
@@ -35,5 +38,12 @@ public class CategoriesController {
 		@RequestBody CategoriesDTO categoriesDTO){
 		Languages languages = languagesService.findbyId(languageId);
 		return categoriesService.saveCategories(languages, categoriesDTO);
+	}
+	
+	@RequestMapping(value = "/searchCategories", method = RequestMethod.GET)
+	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(
+		@RequestHeader(value = "languageId") Long languageId){
+		Languages languages = languagesService.findbyId(languageId);
+		return categoriesService.searchCategories(languages, "aa");
 	}
 }

@@ -1,12 +1,16 @@
 package com.product.prj.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +29,9 @@ public class Categories implements Serializable {
 
 	@Column(name = "parentid")
 	private long ParentId;
+
+	@OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CategoriesTranslate> categoriesTranslates = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -48,6 +55,14 @@ public class Categories implements Serializable {
 
 	public void setParentId(long parentId) {
 		ParentId = parentId;
+	}
+
+	public List<CategoriesTranslate> getCategoriesTranslates() {
+		return categoriesTranslates;
+	}
+
+	public void setCategoriesTranslates(List<CategoriesTranslate> categoriesTranslates) {
+		this.categoriesTranslates = categoriesTranslates;
 	}
 
 }

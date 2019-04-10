@@ -1,5 +1,7 @@
 package com.product.prj.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import com.product.prj.generic.Constants;
 import com.product.prj.generic.ResponseDataConf;
 import com.product.prj.repository.CategoriesRepository;
 import com.product.prj.repository.CategoriesTranslateRepository;
+import com.product.prj.repositoryIml.CategoriesRepositoryIml;
 
 @Service
 @Transactional
@@ -37,7 +40,14 @@ public class CategoriesService {
 		ResponseDataConf<CategoriesDTO> response = new ResponseDataConf<CategoriesDTO>();
 		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, result);
 	}
-		
+	
+	
+	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(Languages languages, String name) {
+		CategoriesRepositoryIml iml = new CategoriesRepositoryIml();
+		List<Categories> lstCategories = iml.searchCategories(name);
+		ResponseDataConf<List<Categories>> response = new ResponseDataConf<List<Categories>>();
+		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lstCategories);
+	}
 	public Categories getCategoriesFromDTO(CategoriesDTO dto) {
 
 		Categories categories = new Categories();
