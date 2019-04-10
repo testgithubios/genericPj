@@ -14,7 +14,7 @@ public class LanguagesService {
 	@Autowired
 	LanguagesRepository languagesRepository;
 	
-	public Languages findbyId(long id) {
+	public Languages findbyId(Long id) {
 		return languagesRepository.findById(id).get();
 	}
 }
