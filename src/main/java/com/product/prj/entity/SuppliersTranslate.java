@@ -26,7 +26,7 @@ public class SuppliersTranslate implements Serializable {
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn(name = "language_id", referencedColumnName = "languages_id")
-	private Languages languages;
+	private CusLanguages languages;
 	
 	@Column(name = "company_name")
 	private String companyName;

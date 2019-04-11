@@ -36,7 +36,7 @@ public class CategoriesTranslate implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "languages_id", insertable = false, updatable = false)
-	private Languages languages;
+	private CusLanguages languages;
 	
 	@Column(name = "name", nullable = false, length = 50)
 	private String name;
@@ -49,11 +49,11 @@ public class CategoriesTranslate implements Serializable {
 		this.categories = categories;
 	}
 
-	public Languages getLanguages() {
+	public CusLanguages getLanguages() {
 		return languages;
 	}
 
-	public void setLanguages(Languages languages) {
+	public void setLanguages(CusLanguages languages) {
 		this.languages = languages;
 	}
 

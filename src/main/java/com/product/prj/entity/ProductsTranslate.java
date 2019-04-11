@@ -25,7 +25,7 @@ public class ProductsTranslate implements Serializable {
 	@Id
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name = "languages_id", referencedColumnName = "languages_id")
-	private Languages languages;
+	private CusLanguages languages;
 	
 	@Column(name = "price")
 	private float price;
@@ -56,11 +56,11 @@ public class ProductsTranslate implements Serializable {
 		this.products = products;
 	}
 
-	public Languages getLanguages() {
+	public CusLanguages getLanguages() {
 		return languages;
 	}
 
-	public void setLanguages(Languages languages) {
+	public void setLanguages(CusLanguages languages) {
 		this.languages = languages;
 	}
 

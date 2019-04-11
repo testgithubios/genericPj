@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.product.prj.dto.CategoriesDTO;
 import com.product.prj.dto.ResponseDTO;
 import com.product.prj.entity.Categories;
-import com.product.prj.entity.Languages;
+import com.product.prj.entity.CusLanguages;
 import com.product.prj.services.CategoriesService;
 import com.product.prj.services.LanguagesService;
 
@@ -36,14 +36,14 @@ public class CategoriesController {
 	public ResponseEntity<ResponseDTO<CategoriesDTO>> addCategory(
 		@RequestHeader(value = "languageId") Long languageId,
 		@RequestBody CategoriesDTO categoriesDTO){
-		Languages languages = languagesService.findbyId(languageId);
+		CusLanguages languages = languagesService.findbyId(languageId);
 		return categoriesService.saveCategories(languages, categoriesDTO);
 	}
 	
 	@RequestMapping(value = "/searchCategories", method = RequestMethod.GET)
 	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(
 		@RequestHeader(value = "languageId") Long languageId){
-		Languages languages = languagesService.findbyId(languageId);
+		CusLanguages languages = languagesService.findbyId(languageId);
 		return categoriesService.searchCategories(languages, "aa");
 	}
 }

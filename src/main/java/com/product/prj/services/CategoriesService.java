@@ -12,7 +12,7 @@ import com.product.prj.dto.CategoriesDTO;
 import com.product.prj.dto.ResponseDTO;
 import com.product.prj.entity.Categories;
 import com.product.prj.entity.CategoriesTranslate;
-import com.product.prj.entity.Languages;
+import com.product.prj.entity.CusLanguages;
 import com.product.prj.generic.Constants;
 import com.product.prj.generic.ResponseDataConf;
 import com.product.prj.repository.CategoriesRepository;
@@ -30,7 +30,7 @@ public class CategoriesService {
 	private CategoriesTranslateRepository categoriesTranslateRepository;
 
 	@Transactional
-	public ResponseEntity<ResponseDTO<CategoriesDTO>> saveCategories(Languages languages, CategoriesDTO input) {
+	public ResponseEntity<ResponseDTO<CategoriesDTO>> saveCategories(CusLanguages languages, CategoriesDTO input) {
 		
 		Categories categories = categoriesRepository.save(getCategoriesFromDTO(input));
 		CategoriesTranslate categoriesTranslate = categoriesTranslateRepository
@@ -42,7 +42,7 @@ public class CategoriesService {
 	}
 	
 	
-	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(Languages languages, String name) {
+	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(CusLanguages languages, String name) {
 		CategoriesRepositoryIml iml = new CategoriesRepositoryIml();
 		List<Categories> lstCategories = iml.searchCategories(name);
 		ResponseDataConf<List<Categories>> response = new ResponseDataConf<List<Categories>>();
@@ -59,7 +59,7 @@ public class CategoriesService {
 		return categories;
 	}
 
-	public CategoriesTranslate getCategoriesTranslateFromDTO(Categories categories, Languages languages,
+	public CategoriesTranslate getCategoriesTranslateFromDTO(Categories categories, CusLanguages languages,
 			CategoriesDTO dto) {
 
 		CategoriesTranslate categoriesTranslate = new CategoriesTranslate();

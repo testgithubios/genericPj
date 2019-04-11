@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.product.prj.entity.Languages;
+import com.product.prj.entity.CusLanguages;
 import com.product.prj.repository.LanguagesRepository;
 
 @Service
@@ -14,7 +14,7 @@ public class LanguagesService {
 	@Autowired
 	LanguagesRepository languagesRepository;
 	
-	public Languages findbyId(Long id) {
+	public CusLanguages findbyId(Long id) {
 		return languagesRepository.findById(id).get();
 	}
 }
