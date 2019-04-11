@@ -44,6 +44,6 @@ public class CategoriesController {
 	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(
 		@RequestHeader(value = "languageId") Long languageId){
 		CusLanguages languages = languagesService.findbyId(languageId);
-		return categoriesService.searchCategories(languages, "aa");
+		return categoriesService.searchCategories(languages, "Category 2");
 	}
 }

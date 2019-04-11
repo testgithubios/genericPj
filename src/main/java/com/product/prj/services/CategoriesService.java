@@ -46,13 +46,12 @@ public class CategoriesService {
 	
 	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(CusLanguages languages, String name) {
 		
-		CategoriesSpecification spec = new CategoriesSpecification(new SearchCriteria("languagesId", "languagesId",languages.getId()));
+		CategoriesSpecification spec = new CategoriesSpecification(new SearchCriteria("name", ":",name));
 		
 		List<Categories> lst = IteratorUtils.toList(categoriesRepository.findAll(spec).iterator());
 		
 		ResponseDataConf<List<Categories>> response = new ResponseDataConf<List<Categories>>();
-		response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lst);
-		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lst);
+		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.SEARCH_CATEGORIES_SUCCESS, lst);
 	}
 	public Categories getCategoriesFromDTO(CategoriesDTO dto) {
 
