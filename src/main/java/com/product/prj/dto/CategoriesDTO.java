@@ -2,27 +2,27 @@ package com.product.prj.dto;
 
 public class CategoriesDTO extends BaseDTO{
 	
-	private long categoriesId;
+	private Long categoriesId;
 	
-	private int categoryType;
+	private Integer categoryType;
 	
-	private long parentId;
+	private Long parentId;
 	
 	private String name;
 
-	public long getCategoriesId() {
+	public Long getCategoriesId() {
 		return categoriesId;
 	}
 
-	public void setCategoriesId(long categoriesId) {
+	public void setCategoriesId(Long categoriesId) {
 		this.categoriesId = categoriesId;
 	}
 
-	public int getCategoryType() {
+	public Integer getCategoryType() {
 		return categoryType;
 	}
 
-	public void setCategoryType(int categoryType) {
+	public void setCategoryType(Integer categoryType) {
 		this.categoryType = categoryType;
 	}
 
@@ -30,7 +30,7 @@ public class CategoriesDTO extends BaseDTO{
 		return parentId;
 	}
 
-	public void setParentId(long parentId) {
+	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
 

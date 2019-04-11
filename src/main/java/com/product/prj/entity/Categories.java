@@ -13,8 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "categories")
+@JsonIgnoreProperties
 public class Categories implements Serializable {
 
 	private static final long serialVersionUID = -1633816374375549622L;
@@ -25,10 +29,10 @@ public class Categories implements Serializable {
 	private Long id;
 
 	@Column(name = "type_category")
-	private int categoryType;
+	private Integer categoryType;
 
 	@Column(name = "parentid")
-	private long ParentId;
+	private Long ParentId;
 
 	@OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CategoriesTranslate> categoriesTranslates = new ArrayList<>();
@@ -45,24 +49,24 @@ public class Categories implements Serializable {
 		return categoryType;
 	}
 
-	public void setCategoryType(int categoryType) {
+	public void setCategoryType(Integer categoryType) {
 		this.categoryType = categoryType;
 	}
 
-	public long getParentId() {
+	public Long getParentId() {
 		return ParentId;
 	}
 
-	public void setParentId(long parentId) {
+	public void setParentId(Long parentId) {
 		ParentId = parentId;
 	}
 
-	public List<CategoriesTranslate> getCategoriesTranslates() {
-		return categoriesTranslates;
-	}
-
-	public void setCategoriesTranslates(List<CategoriesTranslate> categoriesTranslates) {
-		this.categoriesTranslates = categoriesTranslates;
-	}
+//	public List<CategoriesTranslate> getCategoriesTranslates() {
+//		return categoriesTranslates;
+//	}
+//
+//	public void setCategoriesTranslates(List<CategoriesTranslate> categoriesTranslates) {
+//		this.categoriesTranslates = categoriesTranslates;
+//	}
 
 }

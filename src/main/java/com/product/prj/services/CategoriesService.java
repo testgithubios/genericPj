@@ -2,6 +2,7 @@ package com.product.prj.services;
 
 import java.util.List;
 
+import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ import com.product.prj.repositoryIml.CategoriesRepositoryIml;
 @Service
 @Transactional
 public class CategoriesService {
-
+	
 	@Autowired
 	private CategoriesRepository categoriesRepository;
 
@@ -43,10 +44,15 @@ public class CategoriesService {
 	
 	
 	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(CusLanguages languages, String name) {
-		CategoriesRepositoryIml iml = new CategoriesRepositoryIml();
-		List<Categories> lstCategories = iml.searchCategories(name);
+		
+		System.out.println(categoriesRepository.findAll().iterator().next().getId());
+		List<Categories> lst = IteratorUtils.toList(categoriesRepository.findAll().iterator());
+		System.out.println("222 "+ lst.size());
 		ResponseDataConf<List<Categories>> response = new ResponseDataConf<List<Categories>>();
-		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lstCategories);
+		try {
+			response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lst);
+		}catch(Exception e) {e.printStackTrace();}
+		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lst);
 	}
 	public Categories getCategoriesFromDTO(CategoriesDTO dto) {
 
@@ -58,7 +64,7 @@ public class CategoriesService {
 		
 		return categories;
 	}
-
+	
 	public CategoriesTranslate getCategoriesTranslateFromDTO(Categories categories, CusLanguages languages,
 			CategoriesDTO dto) {
 
