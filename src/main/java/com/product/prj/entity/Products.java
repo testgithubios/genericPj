@@ -23,10 +23,7 @@ public class Products implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
-	private long id;
-	
-	@Column(name = "name", nullable = false, length = 100)
-	private String name;
+	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categories_id")
@@ -58,20 +55,12 @@ public class Products implements Serializable {
 	@Column(name = "status")
 	private boolean status = false;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Categories getCategories() {

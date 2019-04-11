@@ -20,7 +20,7 @@ public class ProductImg implements Serializable {
 
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name = "product_img_id")
-	private long id;
+	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_id")
@@ -29,11 +29,11 @@ public class ProductImg implements Serializable {
 	@Column(name = "product_img")
 	private String productImg;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

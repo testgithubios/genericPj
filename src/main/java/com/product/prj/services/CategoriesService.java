@@ -18,7 +18,6 @@ import com.product.prj.generic.Constants;
 import com.product.prj.generic.ResponseDataConf;
 import com.product.prj.repository.CategoriesRepository;
 import com.product.prj.repository.CategoriesTranslateRepository;
-import com.product.prj.repositoryIml.CategoriesRepositoryIml;
 
 @Service
 @Transactional
@@ -45,13 +44,11 @@ public class CategoriesService {
 	
 	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(CusLanguages languages, String name) {
 		
-		System.out.println(categoriesRepository.findAll().iterator().next().getId());
+		
 		List<Categories> lst = IteratorUtils.toList(categoriesRepository.findAll().iterator());
-		System.out.println("222 "+ lst.size());
+		
 		ResponseDataConf<List<Categories>> response = new ResponseDataConf<List<Categories>>();
-		try {
-			response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lst);
-		}catch(Exception e) {e.printStackTrace();}
+		response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lst);
 		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, lst);
 	}
 	public Categories getCategoriesFromDTO(CategoriesDTO dto) {

@@ -13,12 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @Table(name = "categories")
-@JsonIgnoreProperties
 public class Categories implements Serializable {
 
 	private static final long serialVersionUID = -1633816374375549622L;
@@ -37,7 +33,7 @@ public class Categories implements Serializable {
 	@OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CategoriesTranslate> categoriesTranslates = new ArrayList<>();
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -45,7 +41,7 @@ public class Categories implements Serializable {
 		this.id = id;
 	}
 
-	public int getCategoryType() {
+	public Integer getCategoryType() {
 		return categoryType;
 	}
 

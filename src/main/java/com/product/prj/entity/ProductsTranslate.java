@@ -28,10 +28,13 @@ public class ProductsTranslate implements Serializable {
 	private CusLanguages languages;
 	
 	@Column(name = "price")
-	private float price;
+	private Float price;
 	
 	@Column(name = "weight")
-	private float weight;
+	private Float weight;
+	
+	@Column(name = "name", nullable = false, length = 100)
+	private String name;
 	
 	@Column(name = "color")
 	private String color;
@@ -47,6 +50,14 @@ public class ProductsTranslate implements Serializable {
 	
 	@Column(name = "long_desc")
 	private String longDesc;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public Products getProducts() {
 		return products;
@@ -64,19 +75,19 @@ public class ProductsTranslate implements Serializable {
 		this.languages = languages;
 	}
 
-	public float getPrice() {
+	public Float getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
 
-	public float getWeight() {
+	public Float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(float weight) {
+	public void setWeight(Float weight) {
 		this.weight = weight;
 	}
 

@@ -26,7 +26,7 @@ public class CategoriesDTO extends BaseDTO{
 		this.categoryType = categoryType;
 	}
 
-	public long getParentId() {
+	public Long getParentId() {
 		return parentId;
 	}
 

@@ -8,7 +8,6 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.product.prj.entity.Categories;
-import com.product.prj.entity.Categories_;
 
 public class CategoriesSpecification implements Specification<Categories> {
 
@@ -18,7 +17,7 @@ public class CategoriesSpecification implements Specification<Categories> {
 	@Override
 	public Predicate toPredicate(Root<Categories> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 		
-		root.join(Categories_.CATEGORIES_TRANSLATES);
+		root.join("categoriesTranslates");
 
 		if(criteria != null) {
 			if (criteria.getOperation().equalsIgnoreCase(">")) {

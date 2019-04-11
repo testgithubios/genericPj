@@ -20,23 +20,23 @@ public class CompanyImg implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "company_img_id")
-	private long id;
+	private Long id;
 	
 	@Column(name = "img_name")
 	private String imgName;
 	
 	@Column(name = "img_type")
-	private int imgType;
+	private Integer imgType;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "company_id")
 	private Company company;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -48,11 +48,11 @@ public class CompanyImg implements Serializable {
 		this.imgName = imgName;
 	}
 
-	public int getImgType() {
+	public Integer getImgType() {
 		return imgType;
 	}
 
-	public void setImgType(int imgType) {
+	public void setImgType(Integer imgType) {
 		this.imgType = imgType;
 	}
 

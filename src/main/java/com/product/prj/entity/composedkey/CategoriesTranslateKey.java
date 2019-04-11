@@ -5,22 +5,22 @@ import java.io.Serializable;
 public class CategoriesTranslateKey implements Serializable{
 
 	private static final long serialVersionUID = 2722166719876159323L;
-	private long categoriesId;
-	private long languagesId;
+	private Long categoriesId;
+	private Long languagesId;
 	
-	public long getCategories() {
+	public Long getCategories() {
 		return categoriesId;
 	}
-	public void setCategories(long categories) {
+	public void setCategories(Long categories) {
 		this.categoriesId = categories;
 	}
-	public long getLanguages() {
+	public Long getLanguages() {
 		return languagesId;
 	}
-	public void setLanguages(long languages) {
+	public void setLanguages(Long languages) {
 		this.languagesId = languages;
 	}
-	public static long getSerialversionuid() {
+	public static Long getSerialversionuid() {
 		return serialVersionUID;
 	}
 }
