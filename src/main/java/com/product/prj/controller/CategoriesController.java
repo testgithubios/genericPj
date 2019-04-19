@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.product.prj.dto.CategoriesDTO;
 import com.product.prj.dto.ResponseDTO;
-import com.product.prj.entity.Categories;
 import com.product.prj.entity.CusLanguages;
 import com.product.prj.services.CategoriesService;
 import com.product.prj.services.LanguagesService;
@@ -41,9 +41,23 @@ public class CategoriesController {
 	}
 	
 	@RequestMapping(value = "/searchCategories", method = RequestMethod.GET)
-	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(
-		@RequestHeader(value = "languageId") Long languageId){
-		CusLanguages languages = languagesService.findbyId(languageId);
-		return categoriesService.searchCategories(languages, "Category 2");
+	public ResponseEntity<ResponseDTO<List<CategoriesDTO>>> searchCategories(
+		@RequestHeader(value = "languageId") Long languageId,
+		@RequestParam(required = false) String name){
+		
+		return categoriesService.searchCategories(languageId,name);
 	}
+	
+	
+	/*
+	 * Test Using @PathVariable
+	 */
+	
+//	@GetMapping({"/searchCategories/{name}", "/searchCategories/"})
+//	public ResponseEntity<ResponseDTO<List<CategoriesDTO>>> searchCategories(
+//		@RequestHeader(value = "languageId") Long languageId,
+//		@PathVariable(required = false) String name){
+//		
+//		return categoriesService.searchCategories(languageId,name);
+//	}
 }

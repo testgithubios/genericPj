@@ -10,6 +10,17 @@ public class CategoriesDTO extends BaseDTO{
 	
 	private String name;
 
+	public CategoriesDTO(Long categoriesId, Integer categoryType, Long parentId, String name) {
+		this.categoriesId = categoriesId;
+		this.categoryType = categoryType;
+		this.parentId = parentId;
+		this.name = name;
+				
+	}
+	
+	public CategoriesDTO() {
+	}
+	
 	public Long getCategoriesId() {
 		return categoriesId;
 	}

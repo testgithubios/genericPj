@@ -8,5 +8,5 @@ import com.product.prj.entity.Categories;
 
 @Repository
 public interface CategoriesRepository extends JpaRepository<Categories, Long>, JpaSpecificationExecutor<Categories>{
-
+	
 }

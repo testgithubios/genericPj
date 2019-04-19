@@ -2,7 +2,6 @@ package com.product.prj.services;
 
 import java.util.List;
 
-import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +17,7 @@ import com.product.prj.generic.Constants;
 import com.product.prj.generic.ResponseDataConf;
 import com.product.prj.repository.CategoriesRepository;
 import com.product.prj.repository.CategoriesTranslateRepository;
-import com.product.prj.specification.CategoriesSpecification;
-import com.product.prj.specification.SearchCriteria;
+import com.product.prj.repositoryIml.CategoriesRepositoryIml;
 
 @Service
 @Transactional
@@ -30,6 +28,9 @@ public class CategoriesService {
 
 	@Autowired
 	private CategoriesTranslateRepository categoriesTranslateRepository;
+	
+	@Autowired
+	private CategoriesRepositoryIml categoriesIml;
 
 	@Transactional
 	public ResponseEntity<ResponseDTO<CategoriesDTO>> saveCategories(CusLanguages languages, CategoriesDTO input) {
@@ -44,14 +45,16 @@ public class CategoriesService {
 	}
 	
 	
-	public ResponseEntity<ResponseDTO<List<Categories>>> searchCategories(CusLanguages languages, String name) {
+	public ResponseEntity<ResponseDTO<List<CategoriesDTO>>> searchCategories(long languageId, String name) {
 		
-		CategoriesSpecification spec = new CategoriesSpecification(new SearchCriteria("name", ":",name));
+//		CategoriesSpecification spec = new CategoriesSpecification(new SearchCriteria("name", ":",name));
+//		
+//		List<Categories> lst = IteratorUtils.toList(categoriesRepository.findAll(spec).iterator());
+//		
+//		ResponseDataConf<List<Categories>> response = new ResponseDataConf<List<Categories>>();
+//		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.SEARCH_CATEGORIES_SUCCESS, lst);
 		
-		List<Categories> lst = IteratorUtils.toList(categoriesRepository.findAll(spec).iterator());
-		
-		ResponseDataConf<List<Categories>> response = new ResponseDataConf<List<Categories>>();
-		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.SEARCH_CATEGORIES_SUCCESS, lst);
+		return categoriesIml.searchCategories(languageId,name);
 	}
 	public Categories getCategoriesFromDTO(CategoriesDTO dto) {
 
