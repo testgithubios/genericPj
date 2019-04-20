@@ -2,6 +2,7 @@ package com.product.prj.services;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,6 @@ import com.product.prj.dto.ResponseDTO;
 import com.product.prj.entity.Categories;
 import com.product.prj.entity.CategoriesTranslate;
 import com.product.prj.entity.CusLanguages;
-import com.product.prj.generic.Constants;
 import com.product.prj.generic.ResponseDataConf;
 import com.product.prj.repository.CategoriesRepository;
 import com.product.prj.repository.CategoriesTranslateRepository;
@@ -22,6 +22,8 @@ import com.product.prj.repositoryIml.CategoriesRepositoryIml;
 @Service
 @Transactional
 public class CategoriesService {
+	
+	private final Logger logger = Logger.getLogger(CategoriesService.class);
 	
 	@Autowired
 	private CategoriesRepository categoriesRepository;
@@ -35,24 +37,25 @@ public class CategoriesService {
 	@Transactional
 	public ResponseEntity<ResponseDTO<CategoriesDTO>> saveCategories(CusLanguages languages, CategoriesDTO input) {
 		
-		Categories categories = categoriesRepository.save(getCategoriesFromDTO(input));
-		CategoriesTranslate categoriesTranslate = categoriesTranslateRepository
-				.save(getCategoriesTranslateFromDTO(categories, languages, input));
-		CategoriesDTO result = convertDataToDTO(categories, categoriesTranslate);
+		CategoriesDTO result = null;
+		try {
+			Categories categories = categoriesRepository.save(getCategoriesFromDTO(input));
+			CategoriesTranslate categoriesTranslate = categoriesTranslateRepository
+					.save(getCategoriesTranslateFromDTO(categories, languages, input));
+			result = convertDataToDTO(categories, categoriesTranslate);
+		}catch (Exception ex) {
+			// TODO: handle exception
+			logger.error(ex.getMessage(), ex);
+			ResponseDataConf<CategoriesDTO> response = new ResponseDataConf<CategoriesDTO>();
+			return response.getResponseEntityWithMessage(HttpStatus.BAD_REQUEST,ex.getMessage() ,result);
+		}
 		
 		ResponseDataConf<CategoriesDTO> response = new ResponseDataConf<CategoriesDTO>();
-		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.CREATE_CATEGORIES_SUCCESS, result);
+		return response.getResponseEntity(HttpStatus.OK,result);
 	}
 	
 	
 	public ResponseEntity<ResponseDTO<List<CategoriesDTO>>> searchCategories(long languageId, String name) {
-		
-//		CategoriesSpecification spec = new CategoriesSpecification(new SearchCriteria("name", ":",name));
-//		
-//		List<Categories> lst = IteratorUtils.toList(categoriesRepository.findAll(spec).iterator());
-//		
-//		ResponseDataConf<List<Categories>> response = new ResponseDataConf<List<Categories>>();
-//		return response.getResponseEntity(HttpStatus.OK, languages.getShortName(), Constants.SEARCH_CATEGORIES_SUCCESS, lst);
 		
 		return categoriesIml.searchCategories(languageId,name);
 	}

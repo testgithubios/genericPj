@@ -24,7 +24,12 @@ public class ResponseDTO<T> implements Serializable {
 		this.message = message;
 		this.httpStatus = httpStatus;
 	}
-
+	
+	public ResponseDTO(HttpStatus httpStatus,  T data) {
+		this.data = data;
+		this.httpStatus = httpStatus;
+	}
+	
 	public HttpStatus getHttpStatus() {
 		return httpStatus;
 	}

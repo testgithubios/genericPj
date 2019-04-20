@@ -2,7 +2,6 @@ package com.product.prj.controller;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +22,6 @@ import com.product.prj.services.LanguagesService;
 @RequestMapping("categories")
 @CrossOrigin(allowCredentials = "true")
 public class CategoriesController {
-	
-	private final Logger logger = Logger.getLogger(CategoriesController.class);
 	
 	@Autowired
 	CategoriesService categoriesService;
