@@ -38,6 +38,11 @@ public class CategoriesService {
 	@Autowired
 	private LanguagesRepository languagesRepository;
 	
+	/**
+	 * 
+	 * @param CategoriesDTO
+	 * @return ResponseEntity<ResponseDTO<CategoriesDTO>>
+	 */
 	@Transactional
 	public ResponseEntity<ResponseDTO<CategoriesDTO>> saveCategories(CategoriesDTO input) {
 		
@@ -59,10 +64,38 @@ public class CategoriesService {
 		return response.getResponseEntity(HttpStatus.OK,result);
 	}
 	
-	
+	/**
+	 * 
+	 * @param shortNameLang
+	 * @param name
+	 * @param lastRecord
+	 * @param pageSize
+	 * @return ResponseEntity<ResponseDTO<List<CategoriesDTO>>>
+	 */
 	public ResponseEntity<ResponseDTO<List<CategoriesDTO>>> searchCategories(String shortNameLang, String name, Integer lastRecord, Integer pageSize) {
 		
 		return categoriesIml.searchCategories(shortNameLang,name, lastRecord, pageSize);
+	}
+	
+	/**
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
+	@Transactional
+	public ResponseEntity<ResponseDTO<CategoriesDTO>> deleteCategories(Long categoryId) {
+		CategoriesDTO result = null;
+		try {
+			categoriesTranslateRepository.deleteCategoriesTranslateByCategoriesId(categoryId);
+			categoriesRepository.deleteById(categoryId);
+		}catch(Exception ex) {
+			// TODO: handle exception
+			logger.error(ex.getMessage(), ex);
+			ResponseDataConf<CategoriesDTO> response = new ResponseDataConf<CategoriesDTO>();
+			return response.getResponseEntityWithMessage(HttpStatus.BAD_REQUEST,ex.getMessage() ,result);
+		}
+		ResponseDataConf<CategoriesDTO> response = new ResponseDataConf<CategoriesDTO>();
+		return response.getResponseEntity(HttpStatus.OK,result);
 	}
 	public Categories getCategoriesFromDTO(CategoriesDTO dto) {
 

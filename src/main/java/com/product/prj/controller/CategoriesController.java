@@ -3,12 +3,10 @@ package com.product.prj.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.product.prj.dto.CategoriesDTO;
 import com.product.prj.dto.ResponseDTO;
-import com.product.prj.entity.CusLanguages;
 import com.product.prj.services.CategoriesService;
 import com.product.prj.services.LanguagesService;
 
@@ -57,4 +54,11 @@ public class CategoriesController {
 //		
 //		return categoriesService.searchCategories(shortNameLang,name.get(),page_record.get(),page_size.get());
 //	}
+	
+	@RequestMapping(value = "/deleteCategory/{categoryId}", method = RequestMethod.DELETE)
+	public ResponseEntity<ResponseDTO<CategoriesDTO>> deleteCategory(
+		@PathVariable Long categoryId){
+		
+		return categoriesService.deleteCategories(categoryId);
+	}
 }
