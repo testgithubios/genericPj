@@ -9,13 +9,23 @@ public class CategoriesDTO extends BaseDTO{
 	private Long parentId;
 	
 	private String name;
-
+	
+	private Long languageId;
+	
 	public CategoriesDTO(Long categoriesId, Integer categoryType, Long parentId, String name) {
 		this.categoriesId = categoriesId;
 		this.categoryType = categoryType;
 		this.parentId = parentId;
 		this.name = name;
 				
+	}
+	
+	public CategoriesDTO(Long categoriesId, Integer categoryType, Long parentId, String name, Long languageId) {
+		this.categoriesId = categoriesId;
+		this.categoryType = categoryType;
+		this.parentId = parentId;
+		this.name = name;
+		this.setLanguageId(languageId);
 	}
 	
 	public CategoriesDTO() {
@@ -51,5 +61,13 @@ public class CategoriesDTO extends BaseDTO{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Long getLanguageId() {
+		return languageId;
+	}
+
+	public void setLanguageId(Long languageId) {
+		this.languageId = languageId;
 	}
 }

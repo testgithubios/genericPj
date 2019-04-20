@@ -17,4 +17,12 @@ public class LanguagesService {
 	public CusLanguages findbyId(Long id) {
 		return languagesRepository.findById(id).get();
 	}
+	
+	public CusLanguages findByShortName(String shortName) {
+		return languagesRepository.findByShortName(shortName);
+	}
+	
+	public CusLanguages findByName(String name) {
+		return languagesRepository.findByName(name);
+	}
 }

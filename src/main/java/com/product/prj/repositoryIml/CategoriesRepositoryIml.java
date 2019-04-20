@@ -3,6 +3,7 @@ package com.product.prj.repositoryIml;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -27,22 +28,26 @@ public class CategoriesRepositoryIml {
 	@Autowired
 	LanguagesRepository languaguesResporitory;
 	@SuppressWarnings("unchecked")
-	public ResponseEntity<ResponseDTO<List<CategoriesDTO>>> searchCategories(long languageId, String name) {
+	public ResponseEntity<ResponseDTO<List<CategoriesDTO>>> searchCategories(String shortNameLang, String name, Integer lastRecord, Integer pageSize) {
 		
-		String query = "Select new com.product.prj.dto.CategoriesDTO (ca.id as categoriesId, ca.categoryType as categoryType, ca.ParentId as parentId, cat.name as name) "
+		
+		String strQuery = "Select new com.product.prj.dto.CategoriesDTO (ca.id as categoriesId, ca.categoryType as categoryType, ca.ParentId as parentId, cat.name as name) "
 					 + "from Categories as ca INNER JOIN CategoriesTranslate as cat "
 					 + "on ca.id = cat.categoriesId INNER JOIN CusLanguages as lan "
-					 + "on cat.languagesId = lan.id where lan.id = " + languageId;
+					 + "on cat.languagesId = lan.id where lan.shortName = '" + shortNameLang+"'";
 		
 		if(StringUtils.isNotBlank(name)) {
 			String condition = " and cat.name like '%"+ name +"%'";
-			query = StringUtils.appendIfMissingIgnoreCase(query,condition);
+			strQuery = StringUtils.appendIfMissingIgnoreCase(strQuery,condition);
 		}
 		
 		List<CategoriesDTO> lst = null;
-		
+		Query query = em.createQuery(strQuery);
 		try {
-			lst = em.createQuery(query).getResultList();
+			if(lastRecord != null && pageSize != null) {
+				query.setFirstResult(lastRecord -1).setMaxResults(pageSize);
+			}
+			lst = query.getResultList();
 		}catch(Exception ex) {
 			logger.error(ex.getMessage(), ex);
 			ResponseDataConf<List<CategoriesDTO>> response = new ResponseDataConf<List<CategoriesDTO>>();
