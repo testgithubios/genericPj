@@ -34,6 +34,12 @@ public class CategoriesController {
 		return categoriesService.saveCategories(categoriesDTO);
 	}
 	
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public ResponseEntity<ResponseDTO<CategoriesDTO>> updateCategory(
+		@RequestBody CategoriesDTO categoriesDTO){
+		return categoriesService.saveCategories(categoriesDTO);
+	}
+	
 	@RequestMapping(value = "/searchCategories/{shortNameLang}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseDTO<List<CategoriesDTO>>> searchCategories(
 		@PathVariable String shortNameLang,
