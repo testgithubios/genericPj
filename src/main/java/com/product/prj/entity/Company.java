@@ -40,6 +40,9 @@ public class Company implements Serializable {
 	@Column(name = "banner")
 	private String banner;
 	
+	@Column(name = "isDefault")
+	private Boolean isDefault;
+	
 	public Long getId() {
 		return id;
 	}

@@ -54,6 +54,10 @@ public class Products implements Serializable {
 	
 	@Column(name = "status")
 	private boolean status = false;
+	
+
+	@Column(name = "isShowHomePage")
+	private Boolean isShowHomePage;
 
 	public Long getId() {
 		return id;
@@ -133,6 +137,14 @@ public class Products implements Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public Boolean getIsShowHomePage() {
+		return isShowHomePage;
+	}
+
+	public void setIsShowHomePage(Boolean isShowHomePage) {
+		this.isShowHomePage = isShowHomePage;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.product.prj.dto;
 
+import java.util.Date;
+
 public class CategoriesDTO extends BaseDTO{
 	
 	private Long categoriesId;
@@ -12,6 +14,8 @@ public class CategoriesDTO extends BaseDTO{
 	
 	private Long languageId;
 	
+	private Date updateDate;
+	
 	public CategoriesDTO(Long categoriesId, Integer categoryType, Long parentId, String name) {
 		this.categoriesId = categoriesId;
 		this.categoryType = categoryType;
@@ -20,11 +24,12 @@ public class CategoriesDTO extends BaseDTO{
 				
 	}
 	
-	public CategoriesDTO(Long categoriesId, Integer categoryType, Long parentId, String name, Long languageId) {
+	public CategoriesDTO(Long categoriesId, Integer categoryType, Long parentId, String name, Long languageId, Date updateDate) {
 		this.categoriesId = categoriesId;
 		this.categoryType = categoryType;
 		this.parentId = parentId;
 		this.name = name;
+		this.setUpdateDate(updateDate);
 		this.setLanguageId(languageId);
 	}
 	
@@ -69,5 +74,13 @@ public class CategoriesDTO extends BaseDTO{
 
 	public void setLanguageId(Long languageId) {
 		this.languageId = languageId;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 }

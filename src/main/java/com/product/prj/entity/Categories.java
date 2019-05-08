@@ -2,6 +2,7 @@ package com.product.prj.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "categories")
@@ -29,7 +32,11 @@ public class Categories implements Serializable {
 
 	@Column(name = "parentid")
 	private Long ParentId;
-
+	
+	@Column(name = "update_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updateDate;
+	
 	@OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CategoriesTranslate> categoriesTranslates = new ArrayList<>();
 
@@ -55,6 +62,14 @@ public class Categories implements Serializable {
 
 	public void setParentId(Long parentId) {
 		ParentId = parentId;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 //	public List<CategoriesTranslate> getCategoriesTranslates() {
