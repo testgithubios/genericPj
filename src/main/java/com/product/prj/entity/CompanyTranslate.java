@@ -21,7 +21,7 @@ public class CompanyTranslate implements Serializable {
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn(name = "company_no_translate_id", referencedColumnName = "company_id")
-	private Categories categories;
+	private Company company;
 	
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -34,12 +34,12 @@ public class CompanyTranslate implements Serializable {
 	@Column(name = "address")
 	private String address;
 
-	public Categories getCategories() {
-		return categories;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setCategories(Categories categories) {
-		this.categories = categories;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	public CusLanguages getLanguages() {
