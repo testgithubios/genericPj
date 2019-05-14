@@ -24,6 +24,24 @@ public class CompanyDTO {
 	
 	private Long languageId;
 
+	public CompanyDTO(Long id, String name, String phone1, String phone2, String facebookLink, 
+			String youtupeLink, String instagramLink, String logo, String banner, String address, Long languageId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.phone1 = phone1;
+		this.phone2 = phone2;
+		this.facebookLink = facebookLink;
+		this.youtupeLink = youtupeLink;
+		this.instagramLink = instagramLink;
+		this.logo = logo;
+		this.banner = banner;
+		this.address = address;
+		this.languageId = languageId;
+	}
+	
+	public CompanyDTO() {}
+	
 	public Long getId() {
 		return id;
 	}

@@ -4,11 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -19,13 +18,21 @@ public class CompanyTranslate implements Serializable {
 	private static final long serialVersionUID = -5794940774036967682L;
 	
 	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn(name = "company_no_translate_id", referencedColumnName = "company_id")
-	private Company company;
+	@Column(name = "company_id")
+	private Long companyId;
 	
 	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn(name = "language_id", referencedColumnName = "languages_id")
+	@Column(name = "languages_id")
+	private Long languagesId;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "company_id", insertable = false, updatable = false)
+	private Company company;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "languages_id", insertable = false, updatable = false)
 	private CusLanguages languages;
 	
 	@Column(name = "name", nullable = false, length = 100)
@@ -34,6 +41,22 @@ public class CompanyTranslate implements Serializable {
 	@Column(name = "address")
 	private String address;
 
+	public Long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
+
+	public Long getLanguagesId() {
+		return languagesId;
+	}
+
+	public void setLanguagesId(Long languagesId) {
+		this.languagesId = languagesId;
+	}
+	
 	public Company getCompany() {
 		return company;
 	}
