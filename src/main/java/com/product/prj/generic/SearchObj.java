@@ -8,6 +8,14 @@ public class SearchObj {
 	
 	private String operator;
 
+	public SearchObj() {}
+	
+	public SearchObj(String fieldName, String fieldValue, String operator) {
+		this.fieldName = fieldName;
+		this.fieldValue = fieldValue;
+		this.operator = operator;
+	}
+	
 	public String getFieldName() {
 		return fieldName;
 	}

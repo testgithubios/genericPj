@@ -26,7 +26,7 @@ public class CompanyDTO {
 
 	public CompanyDTO(Long id, String name, String phone1, String phone2, String facebookLink, 
 			String youtupeLink, String instagramLink, String logo, String banner, String address, Long languageId) {
-		super();
+		
 		this.id = id;
 		this.name = name;
 		this.phone1 = phone1;

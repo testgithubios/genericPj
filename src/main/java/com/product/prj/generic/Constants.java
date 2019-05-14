@@ -12,9 +12,15 @@ public interface Constants {
 	
 	public static final String COMPANY_ALIAS = "company";
 	public static final String COMPANY_FIELD_ID = COMPANY_ALIAS+".id";
+	
 	public static final String COMPANY_TRANSLATE_ALIAS = "company_t";
 	public static final String COMPANY_TRANSLATE_FIELD_ID = COMPANY_TRANSLATE_ALIAS+".companyId";
+	
+	public static final String COMPANY_IMG_ALIAS = "comImg";
+	public static final String COMPANY_IMG_FIELD_ID = COMPANY_IMG_ALIAS +".company.id";
+	
 	public static final String LANGUAGES_ALIAS = "languages";
 	public static final String LANGUAGES_FIELD_ID = LANGUAGES_ALIAS+".id";
 	public static final String LANGUAGES_FIELD_SHORTNAME = LANGUAGES_ALIAS+".shortName";
+	
 }

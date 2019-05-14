@@ -31,15 +31,23 @@ private final Logger logger = Logger.getLogger(CompanyRepositoryIml.class);
 	public List<CompanyDTO> getCompanies(String shortNameLang, List<SearchObj> searchObjs,Integer lastRecord, Integer pageSize) {
 		List<CompanyDTO> lst = null;
 		String sql = "Select new com.product.prj.dto.CompanyDTO("
-				
+				+ Constants.COMPANY_ALIAS+".id, "+Constants.COMPANY_TRANSLATE_ALIAS+".name, "
+				+ Constants.COMPANY_ALIAS+".phone1, "+Constants.COMPANY_ALIAS+".phone2, "
+				+ Constants.COMPANY_ALIAS+".facebookLink, "+Constants.COMPANY_ALIAS+".youtupeLink, "
+				+ Constants.COMPANY_ALIAS+".instagramLink, "
+				+ Constants.COMPANY_ALIAS+".logo, "+Constants.COMPANY_ALIAS+".banner, "
+				+ Constants.COMPANY_TRANSLATE_ALIAS+".address, "+Constants.LANGUAGES_ALIAS+".id "
 				+ ")"
 				+ " from Company as "+ Constants.COMPANY_ALIAS +" INNER JOIN CompanyTranslate as " + Constants.COMPANY_TRANSLATE_ALIAS
 				+ " on "+ Constants.COMPANY_FIELD_ID +" =  " + Constants.COMPANY_TRANSLATE_FIELD_ID + " INNER JOIN CusLanguages as " + Constants.LANGUAGES_ALIAS
-				+ " on "+ Constants.COMPANY_TRANSLATE_ALIAS+".languagesId = " + Constants.LANGUAGES_FIELD_ID + " where " + Constants.LANGUAGES_FIELD_SHORTNAME + " = '" + shortNameLang+"'";
+				+ " on "+ Constants.COMPANY_TRANSLATE_ALIAS+".languagesId = " + Constants.LANGUAGES_FIELD_ID
+				+ " where " + Constants.LANGUAGES_FIELD_SHORTNAME + " = '" + shortNameLang+"'";
 		
 		for (SearchObj searchObj : searchObjs) {
-			String condition = " and "+ GenericMethod.getConditionFromConditionObj(searchObj);
-			StringUtils.appendIfMissingIgnoreCase(sql,condition);
+			if(searchObj != null) {
+				String condition = " and "+ GenericMethod.getConditionFromConditionObj(searchObj);
+				StringUtils.appendIfMissingIgnoreCase(sql,condition);
+			}
 		}
 		
 		Query query = em.createQuery(sql);
