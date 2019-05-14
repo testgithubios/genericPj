@@ -1,0 +1,128 @@
+{
+	"id": "5864c366-abd2-4aad-8b1f-006000770a38",
+	"name": "GenericPJ",
+	"description": null,
+	"auth": null,
+	"events": null,
+	"variables": null,
+	"order": [
+		"a66385e1-dc00-4b76-9bc3-e23998a08b08",
+		"fc455ab4-af90-4086-8d81-16820a588518",
+		"dd391ae3-90e9-404a-a2e8-31a7e2cac329",
+		"3fe41a2e-3e2c-445c-966f-a8b9fb25a0cb"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "3fe41a2e-3e2c-445c-966f-a8b9fb25a0cb",
+			"name": "http://localhost:8080/companies/getCompanyInfo/vi",
+			"url": "http://localhost:8080/companies/getCompanyInfo/vi",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a66385e1-dc00-4b76-9bc3-e23998a08b08",
+			"name": "http://localhost:8080/categories",
+			"url": "http://localhost:8080/categories",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "languageId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-type",
+					"value": "application/json; charset=utf-8",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"rawModeData": "{\n\t\"categoryType\": 2,\n\t\"parentId\": 0,\n\t\"name\": \"aaa\"\n}",
+			"headers": "languageId: 1\nContent-type: application/json; charset=utf-8\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "dd391ae3-90e9-404a-a2e8-31a7e2cac329",
+			"name": "http://localhost:8080/categories/deleteCategory/1",
+			"url": "http://localhost:8080/categories/deleteCategory/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "fc455ab4-af90-4086-8d81-16820a588518",
+			"name": "http://localhost:8080/categories/searchCategories/en?page_record=1&page_size=2",
+			"url": "http://localhost:8080/categories/searchCategories/en?page_record=1&page_size=2",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "languageId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-type",
+					"value": "[{\"key\":\"Content-type\",\"value\":\"application/json; charset=utf-8\",\"description\":\"\",\"enabled\":true}]",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "page_record",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "page_size",
+					"value": "2",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "languageId: 1\nContent-type: [{\"key\":\"Content-type\",\"value\":\"application/json; charset=utf-8\",\"description\":\"\",\"enabled\":true}]\n",
+			"pathVariables": {}
+		}
+	]
+}
