@@ -25,6 +25,17 @@ public class CusLanguages implements Serializable {
 	@Column(name = "short_name")
 	private String shortName;
 	
+	@Column(name = "is_default")
+	private Boolean isDefault;
+	
+	public Boolean getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(Boolean isDefault) {
+		this.isDefault = isDefault;
+	}
+
 	public Long getId() {
 		return id;
 	}

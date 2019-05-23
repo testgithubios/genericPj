@@ -1,5 +1,5 @@
-insert into cus_languages (languages_id,name,short_name) values (1, 'English', 'en');
-insert into cus_languages (languages_id,name,short_name) values (2, 'Tiếng Việt', 'vi');
+insert into cus_languages (languages_id,name,short_name,is_default) values (1, 'English', 'en', TRUE);
+insert into cus_languages (languages_id,name,short_name,is_default) values (2, 'Tiếng Việt', 'vi', FALSE);
 
 insert into categories (categories_id) values(1);
 insert into categories (categories_id) values(2);

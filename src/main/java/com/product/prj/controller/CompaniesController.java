@@ -1,5 +1,7 @@
 package com.product.prj.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,10 +22,10 @@ public class CompaniesController {
 	@Autowired
 	CompanyService companyService;
 	
-	@RequestMapping(value = "/getCompanyInfo/{shortNameLang}", method = RequestMethod.GET)
+	@RequestMapping(value = {"/getCompanyInfo/{shortNameLang}","/getCompanyInfo"}, method = RequestMethod.GET)
 	public ResponseEntity<ResponseDTO<CompanyDTO>> searchCategories(
-		@PathVariable String shortNameLang){
+		@PathVariable Optional<String> shortNameLang){
 		
-		return companyService.getCompanyInfo(shortNameLang, null, null);
+		return companyService.getDefaultCompanyInfo(shortNameLang, null, null);
 	}
 }

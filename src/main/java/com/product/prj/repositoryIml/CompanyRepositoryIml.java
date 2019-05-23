@@ -1,6 +1,7 @@
 package com.product.prj.repositoryIml;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -28,25 +29,29 @@ private final Logger logger = Logger.getLogger(CompanyRepositoryIml.class);
 	LanguagesRepository languaguesResporitory;
 	
 	@SuppressWarnings("unchecked")
-	public List<CompanyDTO> getCompanies(String shortNameLang, List<SearchObj> searchObjs,Integer lastRecord, Integer pageSize) {
+	public List<CompanyDTO> getCompanies(Optional<String> shortNameLang, List<SearchObj> searchObjs,Integer lastRecord, Integer pageSize) {
 		List<CompanyDTO> lst = null;
 		String sql = "Select new com.product.prj.dto.CompanyDTO("
-				+ Constants.COMPANY_ALIAS+".id, "+Constants.COMPANY_TRANSLATE_ALIAS+".name, "
-				+ Constants.COMPANY_ALIAS+".phone1, "+Constants.COMPANY_ALIAS+".phone2, "
-				+ Constants.COMPANY_ALIAS+".facebookLink, "+Constants.COMPANY_ALIAS+".youtupeLink, "
-				+ Constants.COMPANY_ALIAS+".instagramLink, "
-				+ Constants.COMPANY_ALIAS+".logo, "+Constants.COMPANY_ALIAS+".banner, "
-				+ Constants.COMPANY_TRANSLATE_ALIAS+".address, "+Constants.LANGUAGES_ALIAS+".id "
-				+ ")"
+				+ Constants.COMPANY_ALIAS_FIELD_ID +", " + Constants.COMPANY_TRANSLATE_ALIAS_FIELD_NAME+", "
+				+ Constants.COMPANY_ALIAS_FIELD_PHONE1+", "+Constants.COMPANY_ALIAS_FIELD_PHONE2+", "
+				+ Constants.COMPANY_ALIAS_FIELD_FACEBOOK_LINK+", "+Constants.COMPANY_ALIAS_FIELD_YOUTUPE_LINK+", "
+				+ Constants.COMPANY_ALIAS_FIELD_INSTAGRAM_LINK+", "
+				+ Constants.COMPANY_ALIAS_FIELD_LOGO+", "+Constants.COMPANY_ALIAS_FIELD_BANNER+", "
+				+ Constants.COMPANY_TRANSLATE_ALIAS_FIELD_ADDRESS+", "+Constants.LANGUAGES_FIELD_ID
+				+ " )"
 				+ " from Company as "+ Constants.COMPANY_ALIAS +" INNER JOIN CompanyTranslate as " + Constants.COMPANY_TRANSLATE_ALIAS
-				+ " on "+ Constants.COMPANY_FIELD_ID +" =  " + Constants.COMPANY_TRANSLATE_FIELD_ID + " INNER JOIN CusLanguages as " + Constants.LANGUAGES_ALIAS
-				+ " on "+ Constants.COMPANY_TRANSLATE_ALIAS+".languagesId = " + Constants.LANGUAGES_FIELD_ID
-				+ " where " + Constants.LANGUAGES_FIELD_SHORTNAME + " = '" + shortNameLang+"'";
+				+ " on "+ Constants.COMPANY_ALIAS_FIELD_ID +" =  " + Constants.COMPANY_TRANSLATE_ALIAS_FIELD_ID + " INNER JOIN CusLanguages as " + Constants.LANGUAGES_ALIAS
+				+ " on "+ Constants.COMPANY_TRANSLATE_ALIAS_FIELD_LANGUAGES_ID+" = " + Constants.LANGUAGES_FIELD_ID;
+		
+		String firstCondition = (shortNameLang.isPresent() && StringUtils.isNotBlank(shortNameLang.get()))?
+				" where " + Constants.LANGUAGES_FIELD_SHORTNAME + " = '" + shortNameLang.get()+"'" 
+				: " where " + Constants.LANGUAGES_FIELD_ISDEFAULT + " = true";
+		sql = StringUtils.appendIfMissingIgnoreCase(sql,firstCondition);
 		
 		for (SearchObj searchObj : searchObjs) {
 			if(searchObj != null) {
 				String condition = " and "+ GenericMethod.getConditionFromConditionObj(searchObj);
-				StringUtils.appendIfMissingIgnoreCase(sql,condition);
+				sql = StringUtils.appendIfMissingIgnoreCase(sql,condition);
 			}
 		}
 		

@@ -2,6 +2,7 @@ package com.product.prj.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,13 +64,13 @@ public class CompanyService {
 		return response.getResponseEntity(HttpStatus.OK,result);
 	}
 	
-	public ResponseEntity<ResponseDTO<CompanyDTO>> getCompanyInfo(String languageSortName, Integer pageIndex, Integer pageSize) {
+	public ResponseEntity<ResponseDTO<CompanyDTO>> getDefaultCompanyInfo(Optional<String> languageSortName, Integer pageIndex, Integer pageSize) {
 		CompanyDTO result = null;
 		ResponseDataConf<CompanyDTO> response = new ResponseDataConf<CompanyDTO>();
 		
 		try {
 			List<SearchObj> conditions = new ArrayList<>();
-			conditions.add(new SearchObj(Constants.COMPANY_ALIAS+Company_.IS_DEFAULT, "true", Constants.EQUAL));
+			conditions.add(new SearchObj(Constants.COMPANY_ALIAS+"."+Company_.IS_DEFAULT, "true", Constants.EQUAL));
 			List<CompanyDTO> lst = companyRepositoryIml.getCompanies(languageSortName, conditions, pageIndex, pageSize);
 			result = lst.get(0);
 		}catch (Exception ex) {
