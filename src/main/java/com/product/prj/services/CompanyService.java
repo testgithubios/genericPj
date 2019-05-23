@@ -48,13 +48,14 @@ public class CompanyService {
 	public ResponseEntity<ResponseDTO<CompanyDTO>> saveCompanyInfo(CompanyDTO companyDTO) {
 		CompanyDTO result = null;
 		try {
-			CusLanguages language = languagesRepository.findById(companyDTO.getLanguageId()).get();
+			CusLanguages language = companyDTO.getLanguage();
 			Company company = companyRepository.save(getCompanyFromDTO(companyDTO));
 			CompanyTranslate companyTranslate = companyTranslateRepository.save(getCompanyTranslateFromDTO(companyDTO, company, language));
 			
-			result = convertEntityToDTO(company, companyTranslate, language);
+//			result = convertEntityToDTO(company, companyTranslate, language);
 		}catch (Exception ex) {
 			// TODO: handle exception
+			ex.printStackTrace();
 			logger.error(ex.getMessage(), ex);
 			ResponseDataConf<CompanyDTO> response = new ResponseDataConf<CompanyDTO>();
 			return response.getResponseEntityWithMessage(HttpStatus.BAD_REQUEST,ex.getMessage() ,result);
@@ -101,6 +102,8 @@ public class CompanyService {
 		
 		companyTranslate.setAddress(companyDTO.getAddress());
 		companyTranslate.setCompany(company);
+		companyTranslate.setCompanyId(company.getId());
+		companyTranslate.setLanguagesId(language.getId());
 		companyTranslate.setLanguages(language);
 		companyTranslate.setName(companyDTO.getName());
 		
