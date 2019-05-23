@@ -38,7 +38,7 @@ private final Logger logger = Logger.getLogger(CompanyRepositoryIml.class);
 				+ Constants.COMPANY_ALIAS_FIELD_INSTAGRAM_LINK+", "
 				+ Constants.COMPANY_ALIAS_FIELD_LOGO+", "+Constants.COMPANY_ALIAS_FIELD_BANNER+", "
 				+ Constants.COMPANY_TRANSLATE_ALIAS_FIELD_ADDRESS+", "+Constants.LANGUAGES_FIELD_ID
-				+ " )"
+				+ ","+ Constants.LANGUAGES_ALIAS + " )"
 				+ " from Company as "+ Constants.COMPANY_ALIAS +" INNER JOIN CompanyTranslate as " + Constants.COMPANY_TRANSLATE_ALIAS
 				+ " on "+ Constants.COMPANY_ALIAS_FIELD_ID +" =  " + Constants.COMPANY_TRANSLATE_ALIAS_FIELD_ID + " INNER JOIN CusLanguages as " + Constants.LANGUAGES_ALIAS
 				+ " on "+ Constants.COMPANY_TRANSLATE_ALIAS_FIELD_LANGUAGES_ID+" = " + Constants.LANGUAGES_FIELD_ID;

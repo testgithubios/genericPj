@@ -1,5 +1,7 @@
 package com.product.prj.dto;
 
+import com.product.prj.entity.CusLanguages;
+
 public class CompanyDTO {
 	
 	private Long id;
@@ -23,7 +25,26 @@ public class CompanyDTO {
 	private String address;
 	
 	private Long languageId;
-
+	
+	private CusLanguages language;
+	
+	public CompanyDTO(Long id, String name, String phone1, String phone2, String facebookLink, 
+			String youtupeLink, String instagramLink, String logo, String banner, String address, Long languageId, CusLanguages language) {
+		
+		this.id = id;
+		this.name = name;
+		this.phone1 = phone1;
+		this.phone2 = phone2;
+		this.facebookLink = facebookLink;
+		this.youtupeLink = youtupeLink;
+		this.instagramLink = instagramLink;
+		this.logo = logo;
+		this.banner = banner;
+		this.address = address;
+		this.languageId = languageId;
+		this.language = language;
+	}
+	
 	public CompanyDTO(Long id, String name, String phone1, String phone2, String facebookLink, 
 			String youtupeLink, String instagramLink, String logo, String banner, String address, Long languageId) {
 		
@@ -128,5 +149,13 @@ public class CompanyDTO {
 
 	public void setLanguageId(Long languageId) {
 		this.languageId = languageId;
+	}
+
+	public CusLanguages getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(CusLanguages language) {
+		this.language = language;
 	}
 }
