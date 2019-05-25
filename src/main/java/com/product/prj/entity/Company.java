@@ -43,6 +43,23 @@ public class Company implements Serializable {
 	@Column(name = "is_default")
 	private Boolean isDefault;
 	
+	public Company(Long id, String phone1, String phone2, String facebookLink, String youtupeLink, String instagramLink,
+			String logo, String banner, Boolean isDefault) {
+		
+		this.id = id;
+		this.phone1 = phone1;
+		this.phone2 = phone2;
+		this.facebookLink = facebookLink;
+		this.youtupeLink = youtupeLink;
+		this.instagramLink = instagramLink;
+		this.logo = logo;
+		this.banner = banner;
+		this.setIsDefault(isDefault);
+	}
+
+	public Company() {
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -105,6 +122,14 @@ public class Company implements Serializable {
 
 	public void setBanner(String banner) {
 		this.banner = banner;
+	}
+
+	public Boolean getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(Boolean isDefault) {
+		this.isDefault = isDefault;
 	}
 	
 	

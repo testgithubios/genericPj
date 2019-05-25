@@ -52,7 +52,7 @@ public class CompanyService {
 			Company company = companyRepository.save(getCompanyFromDTO(companyDTO));
 			CompanyTranslate companyTranslate = companyTranslateRepository.save(getCompanyTranslateFromDTO(companyDTO, company, language));
 			
-//			result = convertEntityToDTO(company, companyTranslate, language);
+			result = convertEntityToDTO(company, companyTranslate, language);
 		}catch (Exception ex) {
 			// TODO: handle exception
 			ex.printStackTrace();
@@ -83,47 +83,31 @@ public class CompanyService {
 	}
 	
 	public Company getCompanyFromDTO(CompanyDTO companyDTO) {
-		Company company = new Company();
-		
-		company.setId(companyDTO.getId());
-		company.setBanner(companyDTO.getBanner());
-		company.setFacebookLink(companyDTO.getFacebookLink());
-		company.setInstagramLink(companyDTO.getInstagramLink());
-		company.setLogo(companyDTO.getLogo());
-		company.setPhone1(company.getPhone1());
-		company.setPhone2(companyDTO.getPhone2());
-		company.setYoutupeLink(companyDTO.getYoutupeLink());
+		Company company = new Company(
+				companyDTO.getId(), companyDTO.getPhone1(), companyDTO.getPhone2(),
+				companyDTO.getFacebookLink(), companyDTO.getYoutupeLink(), companyDTO.getInstagramLink(), 
+				companyDTO.getLogo(), companyDTO.getBanner(), companyDTO.getIsDefault()
+		);
 		
 		return company;
 	}
 	
 	public CompanyTranslate getCompanyTranslateFromDTO(CompanyDTO companyDTO, Company company, CusLanguages language) {
-		CompanyTranslate companyTranslate = new CompanyTranslate();
-		
-		companyTranslate.setAddress(companyDTO.getAddress());
-		companyTranslate.setCompany(company);
-		companyTranslate.setCompanyId(company.getId());
-		companyTranslate.setLanguagesId(language.getId());
-		companyTranslate.setLanguages(language);
-		companyTranslate.setName(companyDTO.getName());
+		CompanyTranslate companyTranslate = new CompanyTranslate(
+			company.getId(), language.getId(), company, language, 
+			companyDTO.getName(), companyDTO.getAddress()
+		);
 		
 		return companyTranslate;
 	}
 	
 	public CompanyDTO convertEntityToDTO(Company company, CompanyTranslate companyTranslate, CusLanguages cuslanguage) {
-		CompanyDTO dto = new CompanyDTO();
-		
-		dto.setId(company.getId());
-		dto.setBanner(company.getBanner());
-		dto.setFacebookLink(company.getFacebookLink());
-		dto.setInstagramLink(company.getInstagramLink());
-		dto.setLogo(company.getLogo());
-		dto.setPhone1(company.getPhone1());
-		dto.setPhone2(company.getPhone2());
-		dto.setYoutupeLink(company.getYoutupeLink());
-		dto.setAddress(companyTranslate.getAddress());
-		dto.setLanguageId(cuslanguage.getId());
-		dto.setName(companyTranslate.getName());
+		CompanyDTO dto = new CompanyDTO(
+			company.getId(), companyTranslate.getName(), company.getPhone1(), 
+			company.getPhone2(), company.getFacebookLink(), company.getYoutupeLink(), 
+			company.getInstagramLink(), company.getLogo(), company.getBanner(), companyTranslate.getAddress(), 
+			cuslanguage.getId(), cuslanguage, company.getIsDefault()
+		);
 		
 		return dto;
 	}

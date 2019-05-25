@@ -24,6 +24,7 @@ public interface Constants {
 	public static final String COMPANY_ALIAS_FIELD_INSTAGRAM_LINK = COMPANY_ALIAS+"."+Company_.INSTAGRAM_LINK;
 	public static final String COMPANY_ALIAS_FIELD_LOGO = COMPANY_ALIAS+"."+Company_.LOGO;
 	public static final String COMPANY_ALIAS_FIELD_BANNER = COMPANY_ALIAS+"."+Company_.BANNER;
+	public static final String COMPANY_ALIAS_FIELD_ISDEFALUT = COMPANY_ALIAS+"."+Company_.IS_DEFAULT;
 	
 	
 	public static final String COMPANY_TRANSLATE_ALIAS = "company_t";

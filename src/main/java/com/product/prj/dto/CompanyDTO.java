@@ -28,8 +28,10 @@ public class CompanyDTO {
 	
 	private CusLanguages language;
 	
+	private Boolean isDefault;
+	
 	public CompanyDTO(Long id, String name, String phone1, String phone2, String facebookLink, 
-			String youtupeLink, String instagramLink, String logo, String banner, String address, Long languageId, CusLanguages language) {
+			String youtupeLink, String instagramLink, String logo, String banner, String address, Long languageId, CusLanguages language, Boolean isDefault) {
 		
 		this.id = id;
 		this.name = name;
@@ -43,6 +45,7 @@ public class CompanyDTO {
 		this.address = address;
 		this.languageId = languageId;
 		this.language = language;
+		this.isDefault = isDefault;
 	}
 	
 	public CompanyDTO(Long id, String name, String phone1, String phone2, String facebookLink, 
@@ -157,5 +160,13 @@ public class CompanyDTO {
 
 	public void setLanguage(CusLanguages language) {
 		this.language = language;
+	}
+
+	public Boolean getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(Boolean isDefault) {
+		this.isDefault = isDefault;
 	}
 }

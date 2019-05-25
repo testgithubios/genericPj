@@ -10,9 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.product.prj.entity.composedkey.CompanyTranslateKey;
+
 @Entity
 @Table(name = "company_translate")
-@IdClass(CompanyTranslate.class)
+@IdClass(CompanyTranslateKey.class)
 public class CompanyTranslate implements Serializable {
 
 	private static final long serialVersionUID = -5794940774036967682L;
@@ -40,6 +42,20 @@ public class CompanyTranslate implements Serializable {
 	
 	@Column(name = "address")
 	private String address;
+
+	public CompanyTranslate(Long companyId, Long languagesId, Company company, CusLanguages languages, String name,
+			String address) {
+		this.companyId = companyId;
+		this.languagesId = languagesId;
+		this.company = company;
+		this.languages = languages;
+		this.name = name;
+		this.address = address;
+	}
+
+	public CompanyTranslate() {
+		
+	}
 
 	public Long getCompanyId() {
 		return companyId;
