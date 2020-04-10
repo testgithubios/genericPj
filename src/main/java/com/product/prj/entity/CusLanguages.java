@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
 @Table(name = "cus_languages")
 public class CusLanguages implements Serializable {
@@ -23,6 +25,7 @@ public class CusLanguages implements Serializable {
 	private String name;
 
 	@Column(name = "short_name")
+	@NaturalId
 	private String shortName;
 	
 	@Column(name = "is_default")

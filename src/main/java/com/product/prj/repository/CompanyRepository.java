@@ -9,4 +9,5 @@ import com.product.prj.entity.Company;
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> , JpaSpecificationExecutor<Company>{
 	
+	Company findByIsDefault(boolean isDefault);
 }

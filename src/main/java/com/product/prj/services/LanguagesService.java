@@ -2,33 +2,15 @@ package com.product.prj.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.product.prj.entity.CusLanguages;
-import com.product.prj.repository.LanguagesRepository;
 
-@Service
-@Transactional
-public class LanguagesService {
-
-	@Autowired
-	LanguagesRepository languagesRepository;
+public interface LanguagesService {
 	
-	public CusLanguages findbyId(Long id) {
-		return languagesRepository.findById(id).get();
-	}
+	public CusLanguages findbyId(Long id);
 	
-	public CusLanguages findByShortName(String shortName) {
-		return languagesRepository.findByShortName(shortName);
-	}
+	public CusLanguages findByShortName(String shortName);
 	
-	public CusLanguages findByName(String name) {
-		return languagesRepository.findByName(name);
-	}
+	public CusLanguages findByName(String name);
 	
-	public List<CusLanguages> getAllLanguagues(){
-		return languagesRepository.findAll();
-	}
+	public List<CusLanguages> getAllLanguagues();
 }
